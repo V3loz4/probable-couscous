@@ -11,7 +11,7 @@ public class NTR {
     private int first;
     private int second;
 
-    public NTR(int i, int first, int second) {
+    public NTR(int init, int first, int second) {
         this.init = init;
         this.first = first;
         this.second = second;

@@ -13,13 +13,13 @@ public class Generate {
     List<Character> allowed; // list of allowed characters
     private Random rnd;
 
-    public Generate(Grammar grammar){
+    public Generate(G g){
         allowed = new ArrayList<Character>();
         rnd = new Random();
 
-        for (int i = 0; i< grammar.max; i++){
-            for(int j = 0; j < grammar.getTerminalrules()[i].length;j++){
-                char tempo = Character.toChars(grammar.getTerminalrules()[i][j])[0];
+        for (int i = 0; i< g.max; i++){
+            for(int j = 0; j < g.getTerminalRules()[i].length;j++){
+                char tempo = Character.toChars(g.getTerminalRules()[i][j])[0];
                 if(!allowed.contains(tempo)) {
                     allowed.add(tempo);
                 }

@@ -13,12 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public abstract class Grammar {
-
-    final int max = 100;
-
-    int[][] terminalrules;
-    abstract int[][] getTerminalrules();
+public class Grammar extends G{
+    int max = 100;
     int[][] ntr = new int[max][0];
     int[][] tr = new int[max][0];
     int begin;
@@ -82,7 +78,7 @@ public abstract class Grammar {
             int tempoF = tempo.getFirst();
             int tempoS = tempo.getSecond();
 
-            if ((tempoF - 'A' <= 0) && (tempoF - 'A' < max)){
+            if ((tempoF - 'A' ) <= 0 && (tempoF - 'A') < max){
                 tempoF = tempoF - 'A';
             }
 
@@ -103,5 +99,9 @@ public abstract class Grammar {
             a++;
         }
         reader.close();
+    }
+
+    int[][] getTerminalRules(){
+        return tr;
     }
 }

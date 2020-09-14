@@ -73,7 +73,7 @@ public class Naive extends Parser{
                 for (int k = i+1; k < j; k++){
                     count++;
                     if (parse(tempo1, i, k) && parse(tempo2, k, j)){
-                        rule = true;
+//                        rule = true;
                         return true;
                     }
                 }

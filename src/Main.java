@@ -6,7 +6,6 @@
  */
 
 import java.io.*;
-import java.util.*;
 
 public class Main {
         private static int WARMUP_ROUNDS = 100000;
@@ -14,10 +13,11 @@ public class Main {
 
         public static void main(String[] args) {
 
-            File file = new File("grammar.txt");
-            File file2 = new File("grammar2.txt");
-            File file3 = new File("grammar3.txt");
-            File file4 = new File("grammar4.txt");
+            File file = new File("C:\\Users\\joana\\IdeaProjects\\CYK\\src\\grammar.txt");
+            File file2 = new File("C:\\Users\\joana\\IdeaProjects\\CYK\\src\\grammar2.txt");
+            File file3 = new File("C:\\Users\\joana\\IdeaProjects\\CYK\\src\\grammar3.txt");
+            File file4 = new File("C:\\Users\\joana\\IdeaProjects\\CYK\\src\\grammar4.txt");
+            File dyke = new File("C:\\Users\\joana\\IdeaProjects\\CYK\\src\\Dyke_Language.txt");
 
             Grammar g;
             Grammar g2;
@@ -26,30 +26,10 @@ public class Main {
 
             try {
 
-                g = new Grammar(file) {
-                    @Override
-                    int[][] getTerminalrules() {
-                        return new int[0][];
-                    }
-                };
-                g2 = new Grammar(file2) {
-                    @Override
-                    int[][] getTerminalrules() {
-                        return new int[0][];
-                    }
-                };
-                g3 = new Grammar(file3) {
-                    @Override
-                    int[][] getTerminalrules() {
-                        return new int[0][];
-                    }
-                };;
-                g4 = new Grammar(file4) {
-                    @Override
-                    int[][] getTerminalrules() {
-                        return new int[0][];
-                    }
-                };
+                g = new Grammar(file);
+                g2 = new Grammar(file2);
+                g3 = new Grammar(file3);
+                g4 = new Grammar(file4);
 
 
                 Generate gen3 = new Generate(g3);

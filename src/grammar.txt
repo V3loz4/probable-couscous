@@ -1,6 +1,3 @@
-S SS
-S LA
-S LR
-A SR
-L (
-R )
+S ST
+S TS
+T a
