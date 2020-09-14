@@ -1,0 +1,11 @@
+S AB
+S CD
+S AT
+S CU
+S SS
+T SB
+U SD
+A a
+B b
+C c
+D d

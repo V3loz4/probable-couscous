@@ -1,4 +1,6 @@
-S->SS|LA|LR
-A->SR
-L->(
-R->)
+S SS
+S LA
+S LR
+A SR
+L (
+R )
