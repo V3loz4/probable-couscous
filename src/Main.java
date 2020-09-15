@@ -5,6 +5,7 @@
  * @since   2020-09-07
  */
 
+import javax.sound.sampled.Line;
 import java.io.*;
 
 public class Main {
@@ -17,19 +18,18 @@ public class Main {
             File file2 = new File("C:\\Users\\joana\\IdeaProjects\\CYK\\src\\grammar2.txt");
             File file3 = new File("C:\\Users\\joana\\IdeaProjects\\CYK\\src\\grammar3.txt");
             File file4 = new File("C:\\Users\\joana\\IdeaProjects\\CYK\\src\\grammar4.txt");
-            File dyke = new File("C:\\Users\\joana\\IdeaProjects\\CYK\\src\\Dyke_Language.txt");
 
             Grammar g;
             Grammar g2;
             Grammar g3;
-            Grammar g4;
+            LinearG g4;
 
             try {
 
                 g = new Grammar(file);
                 g2 = new Grammar(file2);
                 g3 = new Grammar(file3);
-                g4 = new Grammar(file4);
+                g4 = new LinearG(file4);
 
 
                 Generate gen3 = new Generate(g3);
@@ -39,21 +39,21 @@ public class Main {
                 Naive naive1 = new Naive(g);
                 TopDown topDo1 = new TopDown(g);
 
-                BottomUpWiki botUp2 = new BottomUpWiki(g);
+                BottomUpWiki linearBotUp = new BottomUpWiki(g4);
 
                 warmUpParser(botUp1);
                 warmUpParser(topDo1);
                 warmUpParser(naive1);
-                warmUpParser(botUp2);
+                warmUpParser(linearBotUp);
 
-                PrintWriter writer = new PrintWriter("result.txt");
+                PrintWriter writer = new PrintWriter("C:\\Users\\joana\\IdeaProjects\\CYK\\src\\result.txt");
 
                 // first time
                 // then counter
                 // then the same for the next grammar
 
-                long[] timearraynaive = new long[20];
-                long[] ctdarraynaive = new long[20];
+                long[] timearraynaiv = new long[20];
+                long[] ctdarraynaiv = new long[20];
 
                 long[] timearraybot = new long[20];
                 long[] ctdarraybot = new long[20];
@@ -65,7 +65,7 @@ public class Main {
 
                 System.out.print("second grammar");
 
-                BottomUp botUp3 = new BottomUp(g2);
+                BottomUp botUp2 = new BottomUp(g2);
                 Naive naive2 = new Naive(g2);
                 TopDown topDo2 = new TopDown(g2);
 
@@ -84,27 +84,27 @@ public class Main {
 
                         String test1 = "";
 
-                        for(int st=0; st<n/2.;st++) {
+                        for(int st=0; st <n/2.;st++) {
                             test1 = test1+"(";
                         }
-                        for(int st=0; st<n/2.;st++) {
-                            test1 = test1+")";
+                        for(int st=0; st <n/2.;st++) {
+                            test1 = test1 + ")";
                         }
 
                         if (i < 3) {
                             naive2.parse(test1);
-                            timearraynaive[t] = naive2.getTime();
-                            ctdarraynaive[t] = naive2.getCount();
+                            timearraynaiv[t] = naive2.getTime();
+                            ctdarraynaiv[t] = naive2.getCount();
 
                             System.out.println(naive2.getCount());
                         }
 
-                        System.out.println(botUp3.parse(test1));
+                        System.out.println(botUp2.parse(test1));
 
-                        timearraybot[t] = botUp3.getTime();
-                        ctdarraybot[t] = botUp3.getCount();
+                        timearraybot[t] = botUp2.getTime();
+                        ctdarraybot[t] = botUp2.getCount();
 
-                        System.out.println(botUp3.getCount());
+                        System.out.println(botUp2.getCount());
 
 
                         topDo2.parse(test1);
@@ -117,9 +117,9 @@ public class Main {
 
                     double total = 0;
                     for (int w = 0; w < 20; w++) {
-                        total = total + timearraynaive[w];
+                        total = total + timearraynaiv[w];
                     }
-                    double averagenaive = total / 20.;
+                    double averagenaiv = total / 20.;
 
                     total = 0;
                     for (int w = 0; w < 20; w++) {
@@ -135,9 +135,9 @@ public class Main {
 
                     total = 0;
                     for (int w = 0; w < 20; w++) {
-                        total = total + ctdarraynaive[w];
+                        total = total + ctdarraynaiv[w];
                     }
-                    double averagenaive2 = total / 20.;
+                    double averagenaiv2 = total / 20.;
 
                     total = 0;
                     for (int w = 0; w < 20; w++) {
@@ -152,8 +152,8 @@ public class Main {
                     double averagetop2 = total / 20.;
 
                     if (i < 3) {
-                        writer.println(averagenaive);
-                        writer.println(averagenaive2);
+                        writer.println(averagenaiv);
+                        writer.println(averagenaiv2);
                     }
                     writer.println(averagebot);
                     writer.println(averagebot2);
@@ -164,8 +164,8 @@ public class Main {
 
                 System.out.print("third grammar");
 
-                BottomUp botUp4 = new BottomUp(g3);
-                Naive naiv3 = new Naive(g3);
+                BottomUp botUp3 = new BottomUp(g3);
+                Naive naive3 = new Naive(g3);
                 TopDown topDo3 = new TopDown(g3);
 
                 n = 1;
@@ -186,19 +186,19 @@ public class Main {
                         String test1 = gen3.generate(n)+"b";
                         n++;
                         if (i < 3) {
-                            naiv3.parse(test1);
-                            timearraynaive[t] = naiv3.getTime();
-                            ctdarraynaive[t] = naiv3.getCount();
+                            naive3.parse(test1);
+                            timearraynaiv[t] = naive3.getTime();
+                            ctdarraynaiv[t] = naive3.getCount();
 
-                            System.out.println(naiv3.getCount());
+                            System.out.println(naive3.getCount());
                         }
 
-                        System.out.println(botUp4.parse(test1));
+                        System.out.println(botUp3.parse(test1));
 
-                        timearraybot[t] = botUp4.getTime();
-                        ctdarraybot[t] = botUp4.getCount();
+                        timearraybot[t] = botUp3.getTime();
+                        ctdarraybot[t] = botUp3.getCount();
 
-                        System.out.println(botUp4.getCount());
+                        System.out.println(botUp3.getCount());
 
 
                         System.out.println(topDo3.parse(test1));
@@ -211,9 +211,9 @@ public class Main {
 
                     double total = 0;
                     for (int w = 0; w < 20; w++) {
-                        total = total + timearraynaive[w];
+                        total = total + timearraynaiv[w];
                     }
-                    double averagenaive = total / 20.;
+                    double averagenaiv = total / 20.;
 
                     total = 0;
                     for (int w = 0; w < 20; w++) {
@@ -229,9 +229,9 @@ public class Main {
 
                     total = 0;
                     for (int w = 0; w < 20; w++) {
-                        total = total + ctdarraynaive[w];
+                        total = total + ctdarraynaiv[w];
                     }
-                    double averagenaive2 = total / 20.;
+                    double averagenaiv2 = total / 20.;
 
                     total = 0;
                     for (int w = 0; w < 20; w++) {
@@ -246,8 +246,8 @@ public class Main {
                     double averagetop2 = total / 20.;
 
                     if (i < 3) {
-                        writer.println(averagenaive);
-                        writer.println(averagenaive2);
+                        writer.println(averagenaiv);
+                        writer.println(averagenaiv2);
                     }
                     writer.println(averagebot);
                     writer.println(averagebot2);
@@ -276,15 +276,15 @@ public class Main {
 
                         String test1 = gen4.generate(n);
 
-                        boolean results = botUp2.parse(test1);
+                        boolean results = linearBotUp.parse(test1);
 
-                        linearctd[t] = botUp2.getCount();
+                        linearctd[t] = linearBotUp.getCount();
 
-                        lineartime[t] = botUp2.getTime();
+                        lineartime[t] = linearBotUp.getTime();
 
                         System.out.println(results);
 
-                        System.out.println(botUp2.getCount());
+                        System.out.println(linearBotUp.getCount());
 
                     }
 

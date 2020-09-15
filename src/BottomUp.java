@@ -5,9 +5,6 @@
  * @since   2020-09-07
  */
 
-import java.io.*;
-import java.util.*;
-
 public class BottomUp  extends Parser{
 
     private Grammar g;
@@ -99,7 +96,7 @@ public class BottomUp  extends Parser{
         return result;
     }
 
-    Grammar getG() {
+    G getG() {
         return g;
     }
 

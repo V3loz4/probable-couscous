@@ -11,13 +11,13 @@ import java.io.*;
 import java.util.*;
 
 public abstract class Parser {
-    private Grammar g;
+    private G g;
 
     abstract boolean parser (String string);
 
     abstract long getCount();
 
-    abstract Grammar getG();
+    abstract G getG();
 
     abstract long getTime();
 }

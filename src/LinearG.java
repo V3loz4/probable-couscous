@@ -1,5 +1,5 @@
 /**
- * CYK Grammar class
+ * CYK Linear Grammar class
  *
  * @author  Joana Velosa, jopa0118@student.umu.se
  * @since   2020-09-07
@@ -9,7 +9,7 @@ import java.io.*;
 import java.lang.*;
 import java.util.*;
 
-public class Grammar extends G{
+public class LinearG extends G{
     int max = 100;
     int[][] ntr = new int[max][0];
     int[][] tr = new int[max][0];
@@ -17,7 +17,7 @@ public class Grammar extends G{
 
     // here the format is not checked, so the input already needs to be in CNF
 
-    public Grammar(File input) throws FileNotFoundException {
+    public LinearG(File input) throws FileNotFoundException {
 
         Scanner reader = new Scanner(input);
 
@@ -71,9 +71,20 @@ public class Grammar extends G{
         int i = 0;
         while(!nttemp.isEmpty()){
             NTR tempo = nttemp.remove(0);
-            ntr[tempo.getInit() - 'A'][i] = tempo.getFirst() - 'A';
+            int tempoF = tempo.getFirst();
+            int tempoS = tempo.getSecond();
+
+            if ((tempoF - 'A' ) <= 0 && (tempoF - 'A') < max){
+                tempoF = tempoF - 'A';
+            }
+
+            if ((tempoS - 'A') <= 0 && (tempoS - 'A') < max){
+                tempoS = tempoS - 'A';
+            }
+
+            ntr[tempo.getInit() - 'A'][i] = tempoF;
             i++;
-            ntr[tempo.getInit() - 'A'][i] = tempo.getSecond() - 'A';
+            ntr[tempo.getInit() - 'A'][i] = tempoS;
             i++;
         }
 

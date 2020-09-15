@@ -8,12 +8,12 @@
  */
 
 public class BottomUpWiki extends Parser{
-    private Grammar g;
+    private LinearG g;
     private long count;
     private int[][][] result;
     private long time;
 
-    public BottomUpWiki(Grammar g) {
+    public BottomUpWiki(LinearG g) {
         this.g = g;
         count = 0;
         time = 0;
@@ -109,7 +109,7 @@ public class BottomUpWiki extends Parser{
         return 0;
     }
 
-    Grammar getG() {
+    LinearG getG() {
         return g;
     }
 
