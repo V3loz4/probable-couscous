@@ -11,8 +11,9 @@ import java.util.*;
 
 public class LinearG extends G{
     int max = 100;
-    int[][] ntr = new int[max][0];
-    int[][] tr = new int[max][0];
+    int min = 0;
+    int[][] ntr = new int[max][max];
+    int[][] tr = new int[max][max];
     int begin;
 
     // here the format is not checked, so the input already needs to be in CNF
